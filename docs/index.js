@@ -53,8 +53,13 @@ outputAllTasks(arrayOfTaskObj);
 
 let imagesEdit = document.querySelectorAll('.toDoItemMenu .edit');
 console.log(imagesEdit);
+
+let imagesDelete = document.querySelectorAll('.toDoItemMenu .delete');
+console.log(imagesDelete);
+
 let itemSpans = document.querySelectorAll('.toDoItem .task');
 console.log(itemSpans);
+
 let itemsMenu = document.querySelectorAll('.toDoItemMenu');
 console.log(itemsMenu);
 
@@ -74,7 +79,9 @@ imagesEdit.forEach( (imgEdit, i) => {
 
 		console.log(itemsMenu[i]);
 		itemsMenu[i].appendChild(imgOk);
-		imagesEdit[i].style.display = 'none';
+
+		imagesEdit[i].style.display 	= 'none';
+		imagesDelete[i].style.display = 'none';
 
 		// taskEditOk(); - convert input to span
 				
