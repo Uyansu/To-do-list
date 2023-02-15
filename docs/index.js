@@ -16,11 +16,21 @@ form.addEventListener("submit", (e) => {
         <input type="checkbox">
         <span class="task">${task}</span>
     </label>
+    <button class="doRestore">↺</button>
     <div class="toDoItemMenu">
 <img class="edit" src="images/pencil.svg">
 <img class="delete" src="images/trash.svg">
 </div>`;
-console.log(toDoList);
+
 toDoList.appendChild(taskEl);
+
+// console.log(toDoList);
+
+taskEl.querySelector("button").onclick = restoreItem;
+taskEl.querySelector(".delete").onclick = deleteToDoItem;
+ 
+// todo: vitali funktionsnamen holen 
+//taskEl.querySelector("edit").onclick = ???;
+
 });
 
