@@ -44,7 +44,7 @@ function outputAllTasks(arrayOfObj) {
 	 		</label>
 			<div class="toDoItemMenu">
           <img class="edit" src="images/pencil.svg">
-          <img src="images/trash.svg">
+          <img class="delete" src="images/trash.svg">
         </div>`
 	} )
 }
