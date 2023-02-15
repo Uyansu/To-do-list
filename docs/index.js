@@ -135,6 +135,8 @@ taskEl.querySelector(".delete").onclick = deleteToDoItem;
 // todo: vitali funktionsnamen holen 
 //taskEl.querySelector("edit").onclick = ???;
 
+ input.value ="";
+ 
 });
 
 
