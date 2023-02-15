@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -18,11 +18,13 @@
       <div class="toDoItem">
         <label>
           <input type="checkbox" />
+
           <span>Wäsche waschen </span>
+
         </label>
         <div class="toDoItemMenu">
           <img src="images/pencil.svg" />
-          <img src="images/trash.svg" />
+          <img class="delete" src="images/trash.svg" />
         </div>
       </div>
 
@@ -30,10 +32,11 @@
         <label class="labelArea">
           <input type="checkbox" />
           <span>Einkaufen</span>
+          <button class="doRestore">↺</button>
         </label>
         <div class="toDoItemMenu">
           <img src="images/pencil.svg" />
-          <img src="images/trash.svg" />
+          <img class="delete" src="images/trash.svg" />
         </div>
       </div>
 
@@ -41,15 +44,17 @@
         <label>
           <input type="checkbox" />
           <span>Essen kochen</span>
+          <button class="doRestore">↺</button>
         </label>
         <div class="toDoItemMenu">
           <img src="images/pencil.svg" />
-          <img src="images/trash.svg" />
+          <img class="delete" src="images/trash.svg" />
         </div>
       </div>
 
     </article>
   </section>
+  <section class="restoreToDoList"></section>
 </body>
 </html>
 
