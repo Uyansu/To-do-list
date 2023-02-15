@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -10,16 +10,17 @@
 <body>
   <section class="toDoList">
     <form class="addTodoItem">
-      <input type="text" required name="toDoItemDescription"/> 
-      <button><img src="images/add.svg" /></button>
+      <input id="newTaskInput" type="text" required name="toDoItemDescription"/> 
+      <button type="submit" id="submitBtn"><img src="images/add.svg" /></button>
     </form> 
     <article class="listToDoItems">
 
       <div class="toDoItem">
         <label>
           <input type="checkbox" />
-          <span>Wäsche waschen fkidsj fdkisj fkldsja fkldsja kfljdkadk</span>
-          <button class="doRestore">↺</button>
+
+          <span>Wäsche waschen </span>
+
         </label>
         <div class="toDoItemMenu">
           <img src="images/pencil.svg" />
@@ -28,7 +29,7 @@
       </div>
 
       <div class="toDoItem">
-        <label>
+        <label class="labelArea">
           <input type="checkbox" />
           <span>Einkaufen</span>
           <button class="doRestore">↺</button>
