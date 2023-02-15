@@ -13,16 +13,17 @@
       <input type="text" required name="toDoItemDescription"/> 
       <button><img src="images/add.svg" /></button>
     </form> 
-    <article class="listTodoItems">
+    <article class="listToDoItems">
 
       <div class="toDoItem">
         <label>
           <input type="checkbox" />
           <span>Wäsche waschen fkidsj fdkisj fkldsja fkldsja kfljdkadk</span>
+          <button class="doRestore">↺</button>
         </label>
         <div class="toDoItemMenu">
           <img src="images/pencil.svg" />
-          <img src="images/trash.svg" />
+          <img class="delete" src="images/trash.svg" />
         </div>
       </div>
 
@@ -30,10 +31,11 @@
         <label>
           <input type="checkbox" />
           <span>Einkaufen</span>
+          <button class="doRestore">↺</button>
         </label>
         <div class="toDoItemMenu">
           <img src="images/pencil.svg" />
-          <img src="images/trash.svg" />
+          <img class="delete" src="images/trash.svg" />
         </div>
       </div>
 
@@ -41,15 +43,17 @@
         <label>
           <input type="checkbox" />
           <span>Essen kochen</span>
+          <button class="doRestore">↺</button>
         </label>
         <div class="toDoItemMenu">
           <img src="images/pencil.svg" />
-          <img src="images/trash.svg" />
+          <img class="delete" src="images/trash.svg" />
         </div>
       </div>
 
     </article>
   </section>
+  <section class="restoreToDoList"></section>
 </body>
 </html>
 
