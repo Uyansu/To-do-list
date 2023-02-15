@@ -17,7 +17,7 @@ let arrayOfTaskObj = [
 
 // arrayOfTaskObj.forEach( taskObj => console.log(taskObj) )
 
-const listTodoItemsDiv = document.querySelector('.listTodoItems');
+const listTodoItemsDiv = document.querySelector('.listToDoItems');
 
 // console.log(listTodoItemsDiv);
 
