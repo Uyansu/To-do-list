@@ -124,13 +124,12 @@ form.addEventListener("submit", (e) => {
 <img class="edit" src="images/pencil.svg">
 <img class="delete" src="images/trash.svg">
 </div>`;
-
-toDoList.appendChild(taskEl);
-
-// console.log(toDoList);
-
-taskEl.querySelector("button").onclick = restoreItem;
-taskEl.querySelector(".delete").onclick = deleteToDoItem;
+	
+	toDoList.appendChild(taskEl);
+	updateToDoListProgressBar(); 
+	taskEl.querySelector("button").onclick = restoreItem;
+	taskEl.querySelector("input").onchange = updateToDoListProgressBar;
+	taskEl.querySelector(".delete").onclick = deleteToDoItem;
  
 // todo: vitali funktionsnamen holen 
 //taskEl.querySelector("edit").onclick = ???;
@@ -156,6 +155,7 @@ function deleteToDoItem(event) {
 	while (!item.classList.contains("toDoItem")) { item = item.parentElement; }
 	item.querySelector("input").disabled = true;  
 	document.querySelector(".restoreToDoList").insertBefore(item, document.querySelector(".restoreToDoList").firstChild);
+	updateToDoListProgressBar(); 
 }
 
 function restoreItem(event) {
@@ -164,6 +164,7 @@ function restoreItem(event) {
 	itemToRestore.style.opacity = 1; 
 	itemToRestore.querySelector("input").disabled = false; 
 	document.querySelector(".listToDoItems").appendChild(itemToRestore); 
+	updateToDoListProgressBar(); 
 }
 
 function restoreListFadeOut() {
@@ -173,6 +174,13 @@ function restoreListFadeOut() {
 		item.style.opacity = (!item.style.opacity) ? 1 : item.style.opacity - 0.02; 
 		if (item.style.opacity < 0) {	document.querySelector(".restoreToDoList").removeChild(item);	}
 	}); 
+}
+
+function updateToDoListProgressBar() {
+	let itemsChecked = document.querySelectorAll(".listToDoItems input[type=checkbox]:checked").length ??= 0;
+	let itemsNotChecked = document.querySelectorAll(".listToDoItems input[type=checkbox]:not(:checked)").length ??= 0;
+	let progress = ((itemsChecked + itemsNotChecked) <= 0) ? 0 : Math.round(itemsChecked * 100 / (itemsChecked + itemsNotChecked));  
+	document.querySelector(".toDoListProgressBar").value = progress; 
 }
 
 

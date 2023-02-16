@@ -1,30 +1,30 @@
-﻿:root {
+:root {
 	--bgColor: #f2f2f2;
 	--bgListColor: #e2e2e2;
 	--bgFormColor: #d2d2d2;
 	--bgToDoItemActiveColor: #c2c2c2;
 	--borderColor: #b2b2b2;
 	--textColor: #333333;
-	--bgRestoreListColor: rgba(0,0,0,0.2); 
-	--bgRestoreListItemColor: #ff8484; 
+	--bgRestoreListColor: rgba(0,0,0,0.2);
+	--bgRestoreListItemColor: #ff8484;
 	--toDoListWidth: 24rem;
 }
 
 html {
-	height: 100%; 
-	font-family: Arial; 
+	height: 100%;
+	font-family: Arial;
 }
 
 body {
-	margin: 0; 
-	padding: 0; 
-	height: 100%; 
-	font-size: 100%; 
-	background-color: var(--bgColor); 
-	display: flex; 
-	justify-content: center;  
-	color: var(--textColor); 
-	position: relative; 
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-size: 100%;
+	background-color: var(--bgColor);
+	display: flex;
+	justify-content: center;
+	color: var(--textColor);
+	position: relative;
 }
 
 .toDoList {
@@ -34,34 +34,34 @@ body {
 	flex-direction: column;
 	border: 1px solid var(--borderColor);
 	overflow: auto;
-	width: var(--toDoListWidth); 
+	width: var(--toDoListWidth);
 }
 
 .addTodoItem {
-	display: flex; 
-	justify-content: center; 
-	align-items: center; 
-	padding: 1rem; 
-	background-color: var(--bgFormColor); 
-	border-bottom: 1px solid var(--borderColor); 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	background-color: var(--bgFormColor);
+	border-bottom: 1px solid var(--borderColor);
 }
 
 	.addTodoItem input {
 		font-size: 1rem;
-		padding: 0.2rem; 
-		border: none; 
-		width: 80%; 
+		padding: 0.2rem;
+		border: none;
+		width: 80%;
 	}
 
 		.addTodoItem input:focus {
 			font-size: 1rem;
 			padding: 0.2rem;
-			outline: 1px dashed var(--borderColor); 
+			outline: 1px dashed var(--borderColor);
 		}
 
 	.addTodoItem button {
-		margin-left: 1rem; 
-		padding: 0rem 0.4rem; 
+		margin-left: 1rem;
+		padding: 0rem 0.4rem;
 	}
 
 		.addTodoItem button:hover {
@@ -69,7 +69,7 @@ body {
 		}
 
 		.addTodoItem button img {
-			height: 1.2rem; 
+			height: 1.2rem;
 		}
 
 .toDoItem {
@@ -79,7 +79,7 @@ body {
 }
 
 	.toDoItem:not(:first-child) {
-		border-top: 1px dashed var(--borderColor); 
+		border-top: 1px dashed var(--borderColor);
 	}
 
 	.toDoItem:hover {
@@ -87,24 +87,24 @@ body {
 		background-color: var(--bgToDoItemActiveColor);
 	}
 
-	.toDoItem:hover .toDoItemMenu {
+		.toDoItem:hover .toDoItemMenu {
+			display: flex;
+		}
+
+	.toDoItem label {
 		display: flex;
 	}
 
-	.toDoItem label {
-		display: flex; 
-	}		
-	
 	.toDoItem span {
 		display: block;
 		margin-left: 1rem;
-		flex: 1; 
+		flex: 1;
 	}
 
-		.toDoItem input:checked + span {
-			text-decoration: line-through; 
-			text-decoration-color: var(--textColor); 
-		}
+	.toDoItem input:checked + span {
+		text-decoration: line-through;
+		text-decoration-color: var(--textColor);
+	}
 
 	.toDoItem .doRestore {
 		font-size: 1.2rem;
@@ -112,52 +112,52 @@ body {
 	}
 
 .toDoItemMenu {
-	position: absolute; 
-	right: 0; 
-	top: 1px; 
-	display: none; 
-	margin:0; 
-	padding:0; 
-	display: none; 
-	justify-content: space-between; 
-	align-items: center; 
-	background-color: var(--bgFormColor); 
-	padding: 0.5rem; 
+	position: absolute;
+	right: 0;
+	top: 1px;
+	display: none;
+	margin: 0;
+	padding: 0;
+	display: none;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--bgFormColor);
+	padding: 0.5rem;
 }
 
 	.toDoItemMenu img {
 		width: 1.1rem;
-		padding: 0.2rem; 
+		padding: 0.2rem;
 		cursor: pointer;
-		margin: 0; 
+		margin: 0;
 	}
 
-	.toDoItemMenu img:hover {
-		background-color: var(--bgColor);
-	}
+		.toDoItemMenu img:hover {
+			background-color: var(--bgColor);
+		}
 
 .restoreToDoList {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	width: var(--toDoListWidth); 
-	flex-direction: column-reverse; 
-	border: 1px solid var(--borderColor); 
+	width: var(--toDoListWidth);
+	flex-direction: column-reverse;
+	border: 1px solid var(--borderColor);
 	background-color: var(--bgRestoreListColor);
-	padding: 1rem; 
+	padding: 1rem;
 }
 
 	.restoreToDoList .toDoItem {
 		background-color: var(--bgRestoreListItemColor);
-		margin-bottom: 1rem; 
+		margin-bottom: 1rem;
 	}
 
-	.restoreToDoList .toDoItem:hover .toDoItemMenu {
-		display: none; 
-	}
+		.restoreToDoList .toDoItem:hover .toDoItemMenu {
+			display: none;
+		}
 
 	.restoreToDoList:empty {
-		display:none; 
+		display: none;
 	}
 
 	.restoreToDoList:not(:empty) {
@@ -165,7 +165,9 @@ body {
 	}
 
 	.restoreToDoList .doRestore {
-		display: block; 
+		display: block;
 	}
 
-
+	.toDoListProgressBar {
+		width: 100%; 
+	}
