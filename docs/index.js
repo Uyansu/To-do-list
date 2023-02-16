@@ -92,15 +92,14 @@ imagesEdit.forEach( (imgEdit, i) => {
 })
 
 function taskEdit(i, imgOk){
-	// console.log(imgOk);
+	console.log('taskEdit run...');
 	
 	let toDoItemInput = document.createElement('input');
 	toDoItemInput.value = itemSpans[i].innerHTML;
 	itemSpans[i].replaceWith(toDoItemInput);  // convert span to input
 
-	console.log('taskEditOk run');
 	imgOk.addEventListener('click', () => {
-		console.log('imgOk click');
+		console.log('imgEditOk click');
 		console.log('old: ' + itemSpans[i].innerHTML);
 		itemSpans[i].innerHTML = toDoItemInput.value;
 		toDoItemInput.replaceWith(itemSpans[i]);  // convert span to input
@@ -110,6 +109,21 @@ function taskEdit(i, imgOk){
 		imagesDelete[i].style.display = 'block';
 		imgOk.style.display = 'none';
 	});
+
+	toDoItemInput.addEventListener('keypress', (e) => { 
+		if (e.key === 'Enter') {
+			console.log('key click: ' + e.key);
+			console.log('old: ' + itemSpans[i].innerHTML);
+			itemSpans[i].innerHTML = toDoItemInput.value;
+			toDoItemInput.replaceWith(itemSpans[i]);  // convert span to input
+			console.log('update: ' + itemSpans[i].innerHTML);
+	
+			imagesEdit[i].style.display 	= 'block';
+			imagesDelete[i].style.display = 'block';
+			imgOk.style.display = 'none';
+		}
+	})
+
 }
 
 
