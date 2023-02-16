@@ -29,6 +29,7 @@ toDoList.appendChild(taskEl);
 
 taskEl.querySelector("button").onclick = restoreItem;
 taskEl.querySelector(".delete").onclick = deleteToDoItem;
+
  
 input.value ="";
 
@@ -36,8 +37,6 @@ input.value ="";
 
 
 
-// todo: vitali funktionsnamen holen 
-//taskEl.querySelector("edit").onclick = ???;
 
 // edit start
 
@@ -114,7 +113,6 @@ input.value ="";
  
 // edit end
  
-
 
 });
 
