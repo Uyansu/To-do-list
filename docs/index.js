@@ -99,34 +99,28 @@ function taskEdit(i, imgOk){
 	itemSpans[i].replaceWith(toDoItemInput);  // convert span to input
 
 	imgOk.addEventListener('click', () => {
-		console.log('imgEditOk click');
-		console.log('old: ' + itemSpans[i].innerHTML);
-		itemSpans[i].innerHTML = toDoItemInput.value;
-		toDoItemInput.replaceWith(itemSpans[i]);  // convert span to input
-		console.log('update: ' + itemSpans[i].innerHTML);
-
-		imagesEdit[i].style.display 	= 'block';
-		imagesDelete[i].style.display = 'block';
-		imgOk.style.display = 'none';
+		editOk(i, toDoItemInput);
 	});
 
 	toDoItemInput.addEventListener('keypress', (e) => { 
 		if (e.key === 'Enter') {
-			console.log('key click: ' + e.key);
-			console.log('old: ' + itemSpans[i].innerHTML);
-			itemSpans[i].innerHTML = toDoItemInput.value;
-			toDoItemInput.replaceWith(itemSpans[i]);  // convert span to input
-			console.log('update: ' + itemSpans[i].innerHTML);
-	
-			imagesEdit[i].style.display 	= 'block';
-			imagesDelete[i].style.display = 'block';
-			imgOk.style.display = 'none';
+			editOk(i, toDoItemInput);
 		}
 	})
-
 }
 
+function editOk(i, toDoItemInput) {
+	console.log('imgEditOk click');
+	console.log('old: ' + itemSpans[i].innerHTML);
 
+	itemSpans[i].innerHTML = toDoItemInput.value;
+	toDoItemInput.replaceWith(itemSpans[i]);  // convert input to span 
+	console.log('update: ' + itemSpans[i].innerHTML);
+
+	imagesEdit[i].style.display 	= 'block';
+	imagesDelete[i].style.display = 'block';
+	imgOk.style.display = 'none';	
+}
 
 
 
