@@ -1,130 +1,4 @@
 
-let arrayOfTaskObj = [
-	{ 
-		task: 'Aufagabe 01',
-		status: false
-	},
-	{ 
-		task: 'Aufagabe 02',
-		status: false
-	},
-	{ 
-		task: 'Aufagabe 03',
-		status: false
-	}
-]
-
-
-// arrayOfTaskObj.forEach( taskObj => console.log(taskObj) )
-
-const listTodoItemsDiv = document.querySelector('.listToDoItems');
-
-// console.log(listTodoItemsDiv);
-
-/* 
-Syntax:
-	element.appendChild(node)
-or
-	node.appendChild(node)
-*/
-
-let toDoItemDiv;
-
-function outputAllTasks(arrayOfObj) {
-	arrayOfObj.forEach( taskObj => {
-		// console.log(taskObj)
-		toDoItemDiv = document.createElement('div');
-		toDoItemDiv.classList.add('toDoItem');
-		listTodoItemsDiv.appendChild(toDoItemDiv);
-
-		toDoItemDiv.innerHTML = `
-			<label>
-				<input type="checkbox">
-				<span class="task">${ taskObj.task }</span>
-	 		</label>
-			<div class="toDoItemMenu">
-          <img class="edit" src="images/pencil.svg">
-          <img class="delete" src="images/trash.svg">
-        </div>`
-	} )
-}
-
-outputAllTasks(arrayOfTaskObj);
-
-let imagesEdit;
-let imagesDelete;
-let itemSpans;
-let itemsMenu;
-
-function refreshArrayOfTasks() {
-	imagesEdit = document.querySelectorAll('.toDoItemMenu .edit');
-	console.log(imagesEdit);
-	
-	imagesDelete = document.querySelectorAll('.toDoItemMenu .delete');
-	console.log(imagesDelete);
-	
-	itemSpans = document.querySelectorAll('.toDoItem .task');
-	console.log(itemSpans);
-	
-	itemsMenu = document.querySelectorAll('.toDoItemMenu');
-	console.log(itemsMenu);
-}
-
-refreshArrayOfTasks();
-
-imagesEdit.forEach( (imgEdit, i) => {
-	imgEdit.addEventListener('click', () => {
-		//console.log(itemSpans[i]);	
-		//alert('click');
-		imgOk = document.createElement('img');
-		imgOk.src = 'images/ok.svg';
-		imgOk.classList.add('editOk');
-		// console.log(imgOk);	
-		
-		// console.log(itemsMenu[i]);
-		itemsMenu[i].appendChild(imgOk);
-	
-		imagesEdit[i].style.display 	= 'none';
-		imagesDelete[i].style.display = 'none';
-	
-		taskEdit(i, imgOk);
-	})
-})
-
-function taskEdit(i, imgOk){
-	console.log('taskEdit run...');
-	
-	let toDoItemInput = document.createElement('input');
-	toDoItemInput.value = itemSpans[i].innerHTML;
-	itemSpans[i].replaceWith(toDoItemInput);  // convert span to input
-
-	imgOk.addEventListener('click', () => {
-		editOk(i, toDoItemInput);
-	});
-
-	toDoItemInput.addEventListener('keypress', (e) => { 
-		if (e.key === 'Enter') {
-			editOk(i, toDoItemInput);
-		}
-	})
-}
-
-function editOk(i, toDoItemInput) {
-	console.log('imgEditOk click');
-	console.log('old: ' + itemSpans[i].innerHTML);
-
-	itemSpans[i].innerHTML = toDoItemInput.value;
-	toDoItemInput.replaceWith(itemSpans[i]);  // convert input to span 
-	console.log('update: ' + itemSpans[i].innerHTML);
-
-	imagesEdit[i].style.display 	= 'block';
-	imagesDelete[i].style.display = 'block';
-	imgOk.style.display = 'none';	
-}
-
-
-
-
 const form = document.querySelector(".addTodoItem");
 const input = document.querySelector("#newTaskInput");
 const toDoList = document.querySelector(".listToDoItems");
@@ -139,15 +13,15 @@ form.addEventListener("submit", (e) => {
     
 
     taskEl.innerHTML = `
-    <label>
-        <input type="checkbox">
-        <span class="task">${task}</span>
-    </label>
-    <button class="doRestore">↺</button>
-    <div class="toDoItemMenu">
-<img class="edit" src="images/pencil.svg">
-<img class="delete" src="images/trash.svg">
-</div>`;
+	<label>
+		<input type="checkbox">
+		<span class="task">${task}</span>
+	</label>
+	<button class="doRestore">↺</button>
+	<div class="toDoItemMenu">
+		<img class="edit" src="images/pencil.svg">
+		<img class="delete" src="images/trash.svg">
+	</div>`;
 
 toDoList.appendChild(taskEl);
 
@@ -156,11 +30,92 @@ toDoList.appendChild(taskEl);
 taskEl.querySelector("button").onclick = restoreItem;
 taskEl.querySelector(".delete").onclick = deleteToDoItem;
  
+input.value ="";
+
+ 
+
+
+
 // todo: vitali funktionsnamen holen 
 //taskEl.querySelector("edit").onclick = ???;
 
- input.value ="";
+// edit start
+
+ let imagesEdit;
+ let imagesDelete;
+ let itemSpans;
+ let itemsMenu;
  
+ function refreshArrayOfTasks() {
+	 imagesEdit = document.querySelectorAll('.toDoItemMenu .edit');
+	 console.log(imagesEdit);
+	 
+	 imagesDelete = document.querySelectorAll('.toDoItemMenu .delete');
+	 console.log(imagesDelete);
+	 
+	 itemSpans = document.querySelectorAll('.toDoItem .task');
+	 console.log(itemSpans);
+	 
+	 itemsMenu = document.querySelectorAll('.toDoItemMenu');
+	 console.log(itemsMenu);
+ }
+ 
+ refreshArrayOfTasks();
+ 
+ imagesEdit.forEach( (imgEdit, i) => {
+	 imgEdit.addEventListener('click', () => {
+		 //console.log(itemSpans[i]);	
+		 //alert('click');
+		 imgOk = document.createElement('img');
+		 imgOk.src = 'images/ok.svg';
+		 imgOk.classList.add('editOk');
+		 // console.log(imgOk);	
+		 
+		 // console.log(itemsMenu[i]);
+		 itemsMenu[i].appendChild(imgOk);
+	 
+		 imagesEdit[i].style.display 	= 'none';
+		 imagesDelete[i].style.display = 'none';
+	 
+		 taskEdit(i, imgOk);
+	 })
+ })
+ 
+ function taskEdit(i, imgOk){
+	 console.log('taskEdit run...');
+	 
+	 let toDoItemInput = document.createElement('input');
+	 toDoItemInput.value = itemSpans[i].innerHTML;
+	 itemSpans[i].replaceWith(toDoItemInput);  // convert span to input
+ 
+	 imgOk.addEventListener('click', () => {
+		 editOk(i, toDoItemInput);
+	 });
+ 
+	 toDoItemInput.addEventListener('keypress', (e) => { 
+		 if (e.key === 'Enter') {
+			 editOk(i, toDoItemInput);
+		 }
+	 })
+ }
+ 
+ function editOk(i, toDoItemInput) {
+	 console.log('imgEditOk click');
+	 console.log('old: ' + itemSpans[i].innerHTML);
+ 
+	 itemSpans[i].innerHTML = toDoItemInput.value;
+	 toDoItemInput.replaceWith(itemSpans[i]);  // convert input to span 
+	 console.log('update: ' + itemSpans[i].innerHTML);
+ 
+	 imagesEdit[i].style.display 	= 'block';
+	 imagesDelete[i].style.display = 'block';
+	 imgOk.style.display = 'none';	
+ }
+ 
+// edit end
+ 
+
+
 });
 
 
