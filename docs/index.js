@@ -51,52 +51,76 @@ function outputAllTasks(arrayOfObj) {
 
 outputAllTasks(arrayOfTaskObj);
 
-let imagesEdit = document.querySelectorAll('.toDoItemMenu .edit');
-console.log(imagesEdit);
-let itemSpans = document.querySelectorAll('.toDoItem .task');
-console.log(itemSpans);
-let itemsMenu = document.querySelectorAll('.toDoItemMenu');
-console.log(itemsMenu);
+let imagesEdit;
+let imagesDelete;
+let itemSpans;
+let itemsMenu;
 
+function refreshArrayOfTasks() {
+	imagesEdit = document.querySelectorAll('.toDoItemMenu .edit');
+	console.log(imagesEdit);
+	
+	imagesDelete = document.querySelectorAll('.toDoItemMenu .delete');
+	console.log(imagesDelete);
+	
+	itemSpans = document.querySelectorAll('.toDoItem .task');
+	console.log(itemSpans);
+	
+	itemsMenu = document.querySelectorAll('.toDoItemMenu');
+	console.log(itemsMenu);
+}
+
+refreshArrayOfTasks();
 
 imagesEdit.forEach( (imgEdit, i) => {
 	imgEdit.addEventListener('click', () => {
 		//console.log(itemSpans[i]);	
 		//alert('click');
-
-
 		imgOk = document.createElement('img');
 		imgOk.src = 'images/ok.svg';
 		imgOk.classList.add('editOk');
+		// console.log(imgOk);	
 		
-		console.log(imgOk);	
-
-
-		console.log(itemsMenu[i]);
+		// console.log(itemsMenu[i]);
 		itemsMenu[i].appendChild(imgOk);
-		imagesEdit[i].style.display = 'none';
-
-		// taskEditOk(); - convert input to span
-				
-		
-		taskEdit(itemSpans[i]);
+	
+		imagesEdit[i].style.display 	= 'none';
+		imagesDelete[i].style.display = 'none';
+	
+		taskEdit(i, imgOk);
 	})
 })
 
-
-function taskEdit(toDoItemSpan){
-	toDoItemInput = document.createElement('input');
-	toDoItemInput.value = toDoItemSpan.innerHTML;
-	toDoItemSpan.replaceWith(toDoItemInput);  // convert span to input
-}
-
-function taskEditOk(){
-	alert('taskEditOk');
-
+function taskEdit(i, imgOk){
+	console.log('taskEdit run...');
 	
+	let toDoItemInput = document.createElement('input');
+	toDoItemInput.value = itemSpans[i].innerHTML;
+	itemSpans[i].replaceWith(toDoItemInput);  // convert span to input
+
+	imgOk.addEventListener('click', () => {
+		editOk(i, toDoItemInput);
+	});
+
+	toDoItemInput.addEventListener('keypress', (e) => { 
+		if (e.key === 'Enter') {
+			editOk(i, toDoItemInput);
+		}
+	})
 }
 
+function editOk(i, toDoItemInput) {
+	console.log('imgEditOk click');
+	console.log('old: ' + itemSpans[i].innerHTML);
 
+	itemSpans[i].innerHTML = toDoItemInput.value;
+	toDoItemInput.replaceWith(itemSpans[i]);  // convert input to span 
+	console.log('update: ' + itemSpans[i].innerHTML);
+
+	imagesEdit[i].style.display 	= 'block';
+	imagesDelete[i].style.display = 'block';
+	imgOk.style.display = 'none';	
+}
 
 
 
