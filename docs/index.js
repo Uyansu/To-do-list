@@ -30,6 +30,9 @@ form.addEventListener("submit", (e) => {
 	taskEl.querySelector("input").onchange = updateToDoListProgressBar;
 	taskEl.querySelector(".delete").onclick = deleteToDoItem;
 
+	input.value ="";
+
+
 
 // edit start
 
@@ -53,6 +56,7 @@ form.addEventListener("submit", (e) => {
  }
  
  refreshArrayOfTasks();
+
  
  imagesEdit.forEach( (imgEdit, i) => {
 	 imgEdit.addEventListener('click', () => {
