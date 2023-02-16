@@ -95,6 +95,10 @@ body {
 		display: flex;
 	}
 
+	.toDoItem label {
+		display: flex;
+	}		
+	
 	.toDoItem span {
 		display: block;
 		margin-left: 1rem;
