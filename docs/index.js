@@ -130,11 +130,7 @@ form.addEventListener("submit", (e) => {
 	taskEl.querySelector("button").onclick = restoreItem;
 	taskEl.querySelector("input").onchange = updateToDoListProgressBar;
 	taskEl.querySelector(".delete").onclick = deleteToDoItem;
- 
-// todo: vitali funktionsnamen holen 
-//taskEl.querySelector("edit").onclick = ???;
-
- input.value ="";
+	input.value ="";
  
 });
 
