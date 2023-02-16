@@ -59,8 +59,11 @@ form.addEventListener("submit", (e) => {
 
  
  imagesEdit.forEach( (imgEdit, i) => {
-	 imgEdit.addEventListener('click', () => {
-		 //console.log(itemSpans[i]);	
+
+	if(i == imagesEdit.length-1) {
+		imgEdit.addEventListener('click', (e) => {
+
+		 //console.log('e.target.parentElement: ' + e.target.parentElement.innerHTML);	
 		 //alert('click');
 		 imgOk = document.createElement('img');
 		 imgOk.src = 'images/ok.svg';
@@ -75,6 +78,8 @@ form.addEventListener("submit", (e) => {
 	 
 		 taskEdit(i, imgOk);
 	 })
+
+	} 
  })
  
  function taskEdit(i, imgOk){
