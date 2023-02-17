@@ -14,15 +14,15 @@ form.addEventListener("submit", (e) => {
 
     taskEl.innerHTML = `
 
-    <label>
-        <input type="checkbox">
-        <span class="task">${task}</span>
-    </label>
-    <button class="doRestore">↺</button>
-    <div class="toDoItemMenu">
-<img class="edit" src="images/pencil.svg">
-<img class="delete" src="images/trash.svg">
-</div>`;
+	<label>
+		<input type="checkbox">
+		<span class="task">${task}</span>
+	</label>
+	<button class="doRestore">↺</button>
+	<div class="toDoItemMenu">
+		<img class="edit" src="images/pencil.svg">
+		<img class="delete" src="images/trash.svg">
+	</div>`;
 	
 	toDoList.appendChild(taskEl);
 	updateToDoListProgressBar(); 
@@ -34,100 +34,99 @@ form.addEventListener("submit", (e) => {
 
 
 
-// edit start
+	// ---- start edit button -----------------
+	const imgEdit = taskEl.querySelector(".edit");
+	console.log(imgEdit);
 
- let imagesEdit;
- let imagesDelete;
- let itemSpans;
- let itemsMenu;
+	const itemMenu = taskEl.querySelector(".toDoItemMenu");
+	console.log(itemMenu);
+
+	const itemSpan = taskEl.querySelector(".task");
+	console.log(itemSpan);
+
+
+	imgEdit.addEventListener('click', (e) => {
  
- function refreshArrayOfTasks() {
-	 imagesEdit = document.querySelectorAll('.toDoItemMenu .edit');
-	 console.log(imagesEdit);
-	 
-	 imagesDelete = document.querySelectorAll('.toDoItemMenu .delete');
-	 console.log(imagesDelete);
-	 
-	 itemSpans = document.querySelectorAll('.toDoItem .task');
-	 console.log(itemSpans);
-	 
-	 itemsMenu = document.querySelectorAll('.toDoItemMenu');
-	 console.log(itemsMenu);
- }
- 
- refreshArrayOfTasks();
-
- 
- imagesEdit.forEach( (imgEdit, i) => {
-
-	// let lastElement = arry.slice(-1);
-	if(i == imagesEdit.length-1) {
-		imgEdit.addEventListener('click', (e) => {
-
 		 //console.log('e.target.parentElement: ' + e.target.parentElement.innerHTML);	
 		 //alert('click');
 		 imgOk = document.createElement('img');
 		 imgOk.src = 'images/ok.svg';
 		 imgOk.classList.add('editOk');
 		 // console.log(imgOk);	
-		 
-		 // console.log(itemsMenu[i]);
-		 itemsMenu[i].appendChild(imgOk);
-	 
-		 // ? im moment addEvent(n) - nur (n) elements im array für n-event gespeichert
-		 refreshArrayOfTasks(); // aktuel array
-		 //console.log(imagesEdit);
-		 imagesEdit.forEach((imgEdit, j) => {
-			imagesEdit[j].style.display 	= 'none'; 
-			imagesDelete[j].style.display = 'none';
-		 })
-	 
-		 taskEdit(i, imgOk);
+		 itemMenu.appendChild(imgOk);
+
+		 noneEditDelete(); // disable edit für andere tasks 
+
+		 taskEdit(imgOk, itemSpan);
 	 })
-
-	} 
- })
- 
- function taskEdit(i, imgOk){
-	 console.log('taskEdit run...');
-	 
-	 let toDoItemInput = document.createElement('input');
-	 toDoItemInput.value = itemSpans[i].innerHTML;
-	 itemSpans[i].replaceWith(toDoItemInput);  // convert span to input
- 
-	 imgOk.addEventListener('click', () => {
-		 editOk(i, toDoItemInput);
-	 });
- 
-	 toDoItemInput.addEventListener('keypress', (e) => { 
-		 if (e.key === 'Enter') {
-			 editOk(i, toDoItemInput);
-		 }
-	 })
- }
- 
- function editOk(i, toDoItemInput) {
-	 // console.log('imgEditOk click');
-	 // console.log('old: ' + itemSpans[i].innerHTML);
- 
-	 itemSpans[i].innerHTML = toDoItemInput.value;
-	 toDoItemInput.replaceWith(itemSpans[i]);  // convert input to span 
-	 console.log('update: ' + itemSpans[i].innerHTML);
- 
-	 imagesEdit.forEach((imgEdit, j) => {
-		imagesEdit[j].style.display 	= 'inline'; 
-		imagesDelete[j].style.display = 'inline';
-	 })
- 
-	 imgOk.remove();	
- }
- 
-// edit end
- 
-
-});
+ 	// ---- end edit button ----
 
 
+});  // end form
+
+
+// ---- start edit ----------------------------
+
+let imagesEdit;
+let imagesDelete;
+
+function createTasksArrays() {
+	imagesEdit = document.querySelectorAll('.toDoItemMenu .edit');
+	console.log(imagesEdit);
+	
+	imagesDelete = document.querySelectorAll('.toDoItemMenu .delete');
+	console.log(imagesDelete);
+}
+
+function noneEditDelete() {
+	createTasksArrays(); 
+	//console.log(imagesEdit);
+	imagesEdit.forEach((el, j) => {
+		imagesEdit[j].style.display 	= 'none'; 
+		imagesDelete[j].style.display = 'none';
+	})	
+
+	input.disabled = true;
+}
+
+function taskEdit(imgOk, itemSpan){
+	// console.log('taskEdit run... OK-button active');
+	
+	let toDoItemInput = document.createElement('input');
+	toDoItemInput.value = itemSpan.innerHTML;
+	toDoItemInput.setAttribute('type', 'text');
+	toDoItemInput.classList.add('inputEdit');
+	itemSpan.replaceWith(toDoItemInput);  // convert span to input
+
+	imgOk.addEventListener('click', () => {
+		editOk(itemSpan, toDoItemInput);
+	});
+
+	toDoItemInput.addEventListener('keypress', (e) => { 
+		if (e.key === 'Enter') {
+			editOk(i, toDoItemInput);
+		}
+	})
+}
+
+function editOk(itemSpan, toDoItemInput) {
+	// console.log('imgEditOk click');
+
+	itemSpan.innerHTML = toDoItemInput.value;
+	toDoItemInput.replaceWith(itemSpan);  // convert input to span 
+	//console.log('update: ' + itemSpan.innerHTML);
+
+	imagesEdit.forEach( (el, j) => {
+	  imagesEdit[j].style.display		= 'inline'; 
+	  imagesDelete[j].style.display 	= 'inline';
+	})
+
+	input.disabled = false;
+
+	imgOk.remove();	
+}
+
+// --- end edit ----
 
 
 
