@@ -69,6 +69,7 @@ form.addEventListener("submit", (e) => {
 
 let imagesEdit;
 let imagesDelete;
+const submitFormBtn = document.querySelector('form button[type="submit"]');
 
 function createTasksArrays() {
 	imagesEdit = document.querySelectorAll('.toDoItemMenu .edit');
@@ -87,6 +88,7 @@ function noneEditDelete() {
 	})	
 
 	input.disabled = true;
+	submitFormBtn.disabled = true; 
 }
 
 function taskEdit(imgOk, itemSpan){
@@ -122,6 +124,7 @@ function editOk(itemSpan, toDoItemInput) {
 	})
 
 	input.disabled = false;
+	submitFormBtn.disabled = true; 
 
 	imgOk.remove();	
 }
