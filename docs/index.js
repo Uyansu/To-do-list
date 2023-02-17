@@ -73,8 +73,11 @@ form.addEventListener("submit", (e) => {
 		 // console.log(itemsMenu[i]);
 		 itemsMenu[i].appendChild(imgOk);
 	 
-		 imagesEdit[i].style.display 	= 'none';
-		 imagesDelete[i].style.display = 'none';
+
+		 imagesEdit.forEach((imgEdit, j) => {
+			imagesEdit[j].style.display 	= 'none'; 
+			imagesDelete[j].style.display = 'none';
+		 })
 	 
 		 taskEdit(i, imgOk);
 	 })
@@ -108,8 +111,11 @@ form.addEventListener("submit", (e) => {
 	 toDoItemInput.replaceWith(itemSpans[i]);  // convert input to span 
 	 console.log('update: ' + itemSpans[i].innerHTML);
  
-	 imagesEdit[i].style.display 	= 'block';
-	 imagesDelete[i].style.display = 'block';
+	 imagesEdit.forEach((imgEdit, j) => {
+		imagesEdit[j].style.display 	= 'inline'; 
+		imagesDelete[j].style.display = 'inline';
+	 })
+ 
 	 imgOk.remove();	
  }
  
