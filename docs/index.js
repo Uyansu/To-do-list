@@ -110,7 +110,7 @@ form.addEventListener("submit", (e) => {
  
 	 imagesEdit[i].style.display 	= 'block';
 	 imagesDelete[i].style.display = 'block';
-	 imgOk.style.display = 'none';	
+	 imgOk.remove();	
  }
  
 // edit end
