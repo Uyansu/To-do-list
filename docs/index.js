@@ -60,6 +60,7 @@ form.addEventListener("submit", (e) => {
  
  imagesEdit.forEach( (imgEdit, i) => {
 
+	// let lastElement = arry.slice(-1);
 	if(i == imagesEdit.length-1) {
 		imgEdit.addEventListener('click', (e) => {
 
@@ -73,7 +74,9 @@ form.addEventListener("submit", (e) => {
 		 // console.log(itemsMenu[i]);
 		 itemsMenu[i].appendChild(imgOk);
 	 
-
+		 // ? im moment addEvent(n) - nur (n) elements im array für n-event gespeichert
+		 refreshArrayOfTasks(); // aktuel array
+		 //console.log(imagesEdit);
 		 imagesEdit.forEach((imgEdit, j) => {
 			imagesEdit[j].style.display 	= 'none'; 
 			imagesDelete[j].style.display = 'none';
@@ -104,8 +107,8 @@ form.addEventListener("submit", (e) => {
  }
  
  function editOk(i, toDoItemInput) {
-	 console.log('imgEditOk click');
-	 console.log('old: ' + itemSpans[i].innerHTML);
+	 // console.log('imgEditOk click');
+	 // console.log('old: ' + itemSpans[i].innerHTML);
  
 	 itemSpans[i].innerHTML = toDoItemInput.value;
 	 toDoItemInput.replaceWith(itemSpans[i]);  // convert input to span 
