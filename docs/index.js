@@ -32,22 +32,29 @@ form.addEventListener("submit", (e) => {
 
 	input.value ="";
 
+	editInit(taskEl);
+ 	
+});  // end form
 
 
-	// ---- start edit button -----------------
-	const imgEdit = taskEl.querySelector(".edit");
+// ---- start edit ----------------------------
+let imagesEdit;
+let imagesDelete;
+const submitFormBtn = document.querySelector('form button[type="submit"]');
+
+function editInit(taskDiv){
+	const imgEdit = taskDiv.querySelector(".edit");
 	console.log(imgEdit);
 
-	const itemMenu = taskEl.querySelector(".toDoItemMenu");
+	const itemMenu = taskDiv.querySelector(".toDoItemMenu");
 	console.log(itemMenu);
 
-	const itemSpan = taskEl.querySelector(".task");
-	console.log(itemSpan);
+	const taskSpan = taskDiv.querySelector(".task");
+	console.log(taskSpan);
 
-
-	imgEdit.addEventListener('click', (e) => {
+	imgEdit.addEventListener('click', (eventObj) => {
  
-		 //console.log('e.target.parentElement: ' + e.target.parentElement.innerHTML);	
+		 //console.log('eventObj.target.parentElement: ' + eventObj.target.parentElement.innerHTML);	
 		 //alert('click');
 		 imgOk = document.createElement('img');
 		 imgOk.src = 'images/ok.svg';
@@ -57,19 +64,10 @@ form.addEventListener("submit", (e) => {
 
 		 noneEditDelete(); // disable edit für andere tasks 
 
-		 taskEdit(imgOk, itemSpan);
-	 })
- 	// ---- end edit button ----
+		 taskEdit(imgOk, taskSpan);
+	 })	
+}
 
-
-});  // end form
-
-
-// ---- start edit ----------------------------
-
-let imagesEdit;
-let imagesDelete;
-const submitFormBtn = document.querySelector('form button[type="submit"]');
 
 function createTasksArrays() {
 	imagesEdit = document.querySelectorAll('.toDoItemMenu .edit');
@@ -91,32 +89,32 @@ function noneEditDelete() {
 	submitFormBtn.disabled = true; 
 }
 
-function taskEdit(imgOk, itemSpan){
+function taskEdit(imgOk, taskSpan){
 	// console.log('taskEdit run... OK-button active');
 	
-	let toDoItemInput = document.createElement('input');
-	toDoItemInput.value = itemSpan.innerHTML;
-	toDoItemInput.setAttribute('type', 'text');
-	toDoItemInput.classList.add('inputEdit');
-	itemSpan.replaceWith(toDoItemInput);  // convert span to input
+	let taskInput = document.createElement('input');
+	taskInput.value = taskSpan.innerHTML;
+	taskInput.setAttribute('type', 'text');
+	taskInput.classList.add('inputEdit');
+	taskSpan.replaceWith(taskInput);  // convert span to input
 
 	imgOk.addEventListener('click', () => {
-		editOk(itemSpan, toDoItemInput);
+		editOk(taskSpan, taskInput);
 	});
 
-	toDoItemInput.addEventListener('keypress', (e) => { 
+	taskInput.addEventListener('keypress', (e) => { 
 		if (e.key === 'Enter') {
-			editOk(i, toDoItemInput);
+			editOk(i, taskInput);
 		}
 	})
 }
 
-function editOk(itemSpan, toDoItemInput) {
+function editOk(taskSpan, taskInput) {
 	// console.log('imgEditOk click');
 
-	itemSpan.innerHTML = toDoItemInput.value;
-	toDoItemInput.replaceWith(itemSpan);  // convert input to span 
-	//console.log('update: ' + itemSpan.innerHTML);
+	taskSpan.innerHTML = taskInput.value;
+	taskInput.replaceWith(taskSpan);  // convert input to span 
+	//console.log('update: ' + taskSpan.innerHTML);
 
 	imagesEdit.forEach( (el, j) => {
 	  imagesEdit[j].style.display		= 'inline'; 
