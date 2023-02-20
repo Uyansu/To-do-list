@@ -71,10 +71,10 @@ function editInit(taskDiv){
 
 function createTasksArrays() {
 	imagesEdit = document.querySelectorAll('.toDoItemMenu .edit');
-	console.log(imagesEdit);
+	//console.log(imagesEdit);
 	
 	imagesDelete = document.querySelectorAll('.toDoItemMenu .delete');
-	console.log(imagesDelete);
+	//console.log(imagesDelete);
 }
 
 function noneEditDelete() {
@@ -122,7 +122,7 @@ function editOk(taskSpan, taskInput) {
 	})
 
 	input.disabled = false;
-	submitFormBtn.disabled = true; 
+	submitFormBtn.disabled = false; 
 
 	imgOk.remove();	
 }
